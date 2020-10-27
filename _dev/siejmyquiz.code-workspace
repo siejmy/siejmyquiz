@@ -50,6 +50,7 @@
     "eslint.lintTask.enable": true,
     "tslint.ignoreDefinitionFiles": false,
     "tslint.jsEnable": true,
+    "tslint.autoFixOnSave": true,
     "vetur.trace.server": "verbose",
     "vetur.format.defaultFormatter.html": "prettier",
     "vetur.format.defaultFormatter.css": "prettier",

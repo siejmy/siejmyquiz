@@ -1,5 +1,5 @@
-import { mountQuiz } from './index'
-export * from './index'
+import { mountQuiz } from "./index"
+export * from "./index"
 
 window.mountQuiz = mountQuiz
 
