@@ -4,4 +4,4 @@ cd "${DIR}"
 set -e
 
 npm i
-npm run build
+npm run build-lib
