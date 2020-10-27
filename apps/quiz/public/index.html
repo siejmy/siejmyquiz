@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <!-- update the version number as needed -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"
+    ></script>
+    <!-- <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script> -->
+    <!-- <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script> -->
+    <!-- <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-messaging.js"></script> -->
+    <!-- <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+    <!-- <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-remote-config.js"></script> -->
+    <!-- <script defer src="https://www.gstatic.com/firebasejs/8.0.0/firebase-performance.js"></script> -->
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong
+        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
+        properly without JavaScript enabled. Please enable it to
+        continue.</strong
+      >
     </noscript>
     <div id="app"></div>
+
+    <script defer>
+      var firebaseConfig = {
+        apiKey: 'AIzaSyC2b3B2ZTZfXTQsuEgyf_q2RmEHg3ep5q0',
+        authDomain: 'siejmy.firebaseapp.com',
+        databaseURL: 'https://siejmy.firebaseio.com',
+        projectId: 'siejmy',
+        storageBucket: 'siejmy.appspot.com',
+        messagingSenderId: '661071259610',
+        appId: '1:661071259610:web:5b026d667631ce218102e3',
+        measurementId: 'G-P265GWYS0G',
+      }
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig)
+    </script>
     <script>
-      window.onload= function() {
+      window.onload = function() {
         mountQuiz('#app', {})
-    }
+      }
     </script>
     <!-- built files will be auto injected -->
   </body>
