@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import 'firebase/firestore'
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 
 import { fetchFirestoreDemo } from './fetchFirestoreDemo'
 

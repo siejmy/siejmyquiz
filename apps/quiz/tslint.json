@@ -2,6 +2,7 @@
   "extends": "jblew-tslint-config",
   "rules": {
     "quotemark": [true, "single"],
-    "no-unused-vars": [false]
+    "no-unused-vars": [false],
+    "no-console": [false]
   }
 }
