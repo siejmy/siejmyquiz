@@ -3,9 +3,10 @@
 </template>
 
 <script lang="ts">
-import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import { Component, Prop, Vue } from 'vue-property-decorator'
+
+import { fetchFirestoreDemo } from './fetchFirestoreDemo'
 
 @Component
 export default class extends Vue {
@@ -16,12 +17,7 @@ export default class extends Vue {
   }
 
   private async doLoadDemo() {
-    const doc = await window.firebase
-      .firestore()
-      .doc('firestore_demo/demo')
-      .get()
-    const data = doc.data()
-    this.blogoslawienstwo = data.blogoslawienstwo
+    this.blogoslawienstwo = await fetchFirestoreDemo()
   }
 }
 </script>
