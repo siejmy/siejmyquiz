@@ -21,6 +21,7 @@
       defer
       src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"
     ></script>
+    <script defer type="module" src="/apps/quiz/quiz.umd.min.js"></script>
     <link href="/style.css" rel="stylesheet" />
   </head>
   <body>
@@ -35,12 +36,12 @@
       </a>
     </div>
 
-    <h1>Lista naszych quizów</h1>
+    <div id="quiz">Ładowanie...</div>
 
-    <ul>
-      <a href="/sanktuaria"
-        >Ile z Polskich sanktuariów jesteś w stanie rozpoznać?</a
-      >
-    </ul>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        quiz.mountQuiz("#quiz", {});
+      });
+    </script>
   </body>
 </html>
