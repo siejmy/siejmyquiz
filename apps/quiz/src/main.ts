@@ -1,8 +1,10 @@
-import Vue from 'vue';
-import App from './App.vue';
+import { mountQuiz } from './index'
+export * from './index'
 
-Vue.config.productionTip = false;
+window.mountQuiz = mountQuiz
 
-new Vue({
-  render: (h) => h(App),
-}).$mount('#app');
+declare global {
+  interface Window {
+    mountQuiz: typeof mountQuiz
+  }
+}
