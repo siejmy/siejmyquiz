@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts">
-import 'firebase/firestore'
 import { Component, Vue } from 'vue-property-decorator'
 
 import { fetchFirestoreDemo } from './fetchFirestoreDemo'
