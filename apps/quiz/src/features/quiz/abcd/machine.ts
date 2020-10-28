@@ -1,6 +1,7 @@
+// tslint:disable trailing-comma
 import { QuizABCD, Result, StatsEntry } from '@/domain'
 import { v4 as uuid } from 'uuid'
-import { assign, Interpreter, Machine, send } from 'xstate'
+import { assign, Interpreter, Machine } from 'xstate'
 
 export interface Schema {
   states: {

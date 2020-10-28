@@ -1,41 +1,69 @@
 <template>
   <div id="abcd-quiz-view">
     <state-matches :state="state">
-      <template #Intro> </template>
-      <template #Question> </template>
-      <template #ProvideDetails> </template>
-      <template #SavingResults> </template>
-      <template #RedirectToSuccessPage> </template>
-      <template #Error.NoResults> </template>
-      <template #Error.HasResults> </template>
+      <template #Intro>
+        <ABCDQuizIntro :interpreter="interpreter" :state="state" />
+      </template>
+      <template #Question>
+        <ABCDQuizQuestion :interpreter="interpreter" :state="state" />
+      </template>
+      <template #ProvideDetails>
+        <ABCDQuizProvideDetails :interpreter="interpreter" :state="state" />
+      </template>
+      <template #SavingResults>
+        <Loading>Ładowanie wyników...</Loading>
+      </template>
+      <template #RedirectToSuccessPage>
+        <ABCDQuizRedirectToResults :interpreter="interpreter" :state="state" />
+      </template>
+      <template #Error.NoResults>
+        <Error>
+          Wystąpił nieznany błąd. Jeśli chcesz nam pomóc rozwijać Siejmy, to
+          powiadom nas o tym!
+        </Error>
+      </template>
+      <template #Error.HasResults>
+        <ABCDQuizTemporaryResults :interpreter="interpreter" :state="state" />
+      </template>
     </state-matches>
   </div>
 </template>
 
 <script lang="ts">
-import { StateMatches } from '@/components'
+import { Error, Loading, StateMatches } from '@/components'
+import { QuizABCD } from '@/domain'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-import { QuizABCD } from '../../../domain'
-
-import ABCDQuizView from './ABCDQuizView.vue'
+import {
+  ABCDQuizIntro,
+  ABCDQuizProvideDetails,
+  ABCDQuizQuestion,
+  ABCDQuizRedirectToResults,
+  ABCDQuizTemporaryResults,
+} from './components'
 import { interpretMachine } from './interpreter'
-import { ABCDQuizInterpreter, initialContext } from './machine'
+import { ABCDQuizInterpreter } from './machine'
 
 @Component({
   components: {
-    ABCDQuizView,
     StateMatches,
+    Loading,
+    Error,
+    ABCDQuizIntro,
+    ABCDQuizQuestion,
+    ABCDQuizProvideDetails,
+    ABCDQuizRedirectToResults,
+    ABCDQuizTemporaryResults,
   },
 })
-export default class QuizPage extends Vue {
+export default class extends Vue {
   @Prop({ required: true, type: Object })
   public quiz!: QuizABCD
 
-  private interpreter: ABCDQuizInterpreter = interpretMachine({
+  public interpreter: ABCDQuizInterpreter = interpretMachine({
     quiz: this.quiz,
   })
-  private state: ABCDQuizInterpreter['state'] = this.interpreter.initialState
+  public state: ABCDQuizInterpreter['state'] = this.interpreter.initialState
 
   public created() {
     this.startMachine()

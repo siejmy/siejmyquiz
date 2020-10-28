@@ -12,7 +12,7 @@ import { State } from 'xstate'
 @Component
 export default class extends Vue {
   @Prop({ required: true })
-  state!: State<any, any>
+  public state!: State<any, any>
 
   get stateNames() {
     return this.state.toStrings()

@@ -8,7 +8,8 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Inject } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
+
 import LoadingSpinner from './LoadingSpinner.vue'
 
 @Component({

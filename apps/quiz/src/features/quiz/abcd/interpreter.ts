@@ -6,15 +6,15 @@ import { ABCDQuizInterpreter, abcdQuizMachine, initialContext } from './machine'
 export function interpretMachine({
   quiz,
 }: {
-  quiz: QuizABCD,
+  quiz: QuizABCD
 }): ABCDQuizInterpreter {
   return interpret(
     abcdQuizMachine
       .withConfig({
         services: {
           saveResults: async ctx => {
-            await saveResults(ctx.result)
-            await saveStatsEntry(ctx.stats)
+            // await saveResults(ctx.result)
+            // await saveStatsEntry(ctx.stats)
           },
         },
       })
