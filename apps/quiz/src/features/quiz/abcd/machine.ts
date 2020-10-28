@@ -177,8 +177,9 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
           quizJSON: JSON.stringify(ctx.quiz),
         }),
       }),
-      nextQuestion: ctx =>
-        assign({ currentQuestionNo: ctx.currentQuestionNo + 1 }),
+      nextQuestion: assign({
+        currentQuestionNo: ctx => ctx.currentQuestionNo + 1,
+      }),
     },
     guards: {
       isLastQuestion: ctx =>

@@ -1,5 +1,5 @@
 <template>
-  <div id="quiz-question">
+  <div class="quiz-question">
     <img v-if="imageUrl" :src="imageUrl" :alt="title" />
     <h2>#{{ questionNumber + 1 }} {{ title }}</h2>
 
@@ -102,6 +102,13 @@ export default class extends Vue {
 
   public next() {
     this.interpreter.send({ type: 'NEXT' })
+    this.selectedAnswerNo = -1
   }
 }
 </script>
+<style scoped>
+.quiz-question img {
+  margin: 0 auto;
+  max-width: 80%;
+}
+</style>
