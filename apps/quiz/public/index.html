@@ -30,6 +30,7 @@
         continue.</strong
       >
     </noscript>
+    <h1>Siejmy quiz</h1>
     <div id="app"></div>
 
     <script defer>
@@ -47,8 +48,83 @@
       firebase.initializeApp(firebaseConfig)
     </script>
     <script>
+      /*
+
+      export interface QuizABCD {
+  id: string
+  type: 'abcd'
+  introHtml: string
+  questions: QuizABCDQuestion[]
+}
+
+export interface QuizABCDQuestion {
+  title: string
+  imageUrl: string
+  distractors: string[]
+  correctNo: number
+}
+
+*/
       window.onload = function() {
-        mountQuiz('#app', {})
+        mountQuiz('#app', {
+          title: 'Sanktuaria w Polsce',
+          quiz: {
+            id: 'sanktuaria-demo',
+            type: 'abcd',
+            introHtml:
+              'Czy potrafisz rozpoznać, który wizarunek Matki Przenajświętszej pochodzi z jakiego sanktuarium?',
+            questions: [
+              {
+                title: 'Co to za sanktuarium?',
+                imageUrl:
+                  'https://teologiapolityczna.pl/assets/cms/ContentImage/2019/Maryja-Jasna-Gora2.jpg',
+                distractors: [
+                  'Częstochowa',
+                  'Ostrożany',
+                  'Obory',
+                  'Gietrzwałd',
+                ],
+                correctNo: 0,
+              },
+              {
+                title: 'Co to za sanktuarium?',
+                imageUrl:
+                  'http://hmt.org.pl/wp-content/uploads/2017/05/2-Ksiga-prb-i-podziekowa-400x320.jpg',
+                distractors: [
+                  'Częstochowa',
+                  'Ostrożany',
+                  'Obory',
+                  'Gietrzwałd',
+                ],
+                correctNo: 3,
+              },
+              {
+                title: 'Co to za sanktuarium?',
+                imageUrl:
+                  'https://dlamaryi.pl/wp-content/uploads/2017/07/maxresdefault-300x199.jpg',
+                distractors: [
+                  'Częstochowa',
+                  'Ostrożany',
+                  'Obory',
+                  'Gietrzwałd',
+                ],
+                correctNo: 2,
+              },
+              {
+                title: 'Co to za sanktuarium?',
+                imageUrl:
+                  'https://sanktuariapolskie.com.pl/wp-content/uploads/2018/10/DSC5436-820x394.jpg',
+                distractors: [
+                  'Częstochowa',
+                  'Ostrożany',
+                  'Obory',
+                  'Gietrzwałd',
+                ],
+                correctNo: 1,
+              },
+            ],
+          },
+        })
       }
     </script>
     <!-- built files will be auto injected -->
