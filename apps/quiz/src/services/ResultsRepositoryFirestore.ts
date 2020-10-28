@@ -12,7 +12,7 @@ export class ResultsRepositoryFirestore {
   }
 
   public async getResultById(id: string): Promise<Result> {
-    const doc = window.firebase
+    const doc = await window.firebase
       .firestore()
       .collection(collection)
       .doc(id)
