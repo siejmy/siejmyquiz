@@ -1,3 +1,6 @@
+import { QuizABCD } from './domain'
+
 export interface Configuration {
-  name: string
+  title: string
+  quiz: QuizABCD
 }
