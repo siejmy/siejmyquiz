@@ -69,7 +69,7 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
     context: initialContext,
     states: {
       Intro: {
-        entry: ['assignQuizToResults'],
+        entry: ['assignQuizToResults', 'initializeStats'],
         on: {
           NEXT: 'Question',
         },
@@ -91,7 +91,7 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
             },
           },
           AnswerCorrect: {
-            entry: 'markCorrectAnswer',
+            entry: ['markAnswer', 'markCorrectAnswer'],
             on: {
               NEXT: [
                 {
@@ -106,7 +106,7 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
             },
           },
           AnswerIncorrect: {
-            entry: 'markIncorrectAnswer',
+            entry: ['markAnswer', 'markIncorrectAnswer'],
             on: {
               NEXT: [
                 {
@@ -177,8 +177,34 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
           quizJSON: JSON.stringify(ctx.quiz),
         }),
       }),
+      initializeStats: assign({
+        stats: ctx => ({
+          quizId: ctx.quiz.id,
+          correctCount: 0,
+          totalCount: 0,
+        }),
+      }),
       nextQuestion: assign({
         currentQuestionNo: ctx => ctx.currentQuestionNo + 1,
+      }),
+      markAnswer: assign({
+        result: (ctx, evt) => ({
+          ...ctx.result,
+          answers: [...ctx.result.answers, (evt as any).no],
+        }),
+      }),
+      markCorrectAnswer: assign({
+        stats: ctx => ({
+          ...ctx.stats!,
+          correctCount: ctx.stats!.correctCount + 1,
+          totalCount: ctx.stats!.totalCount + 1,
+        }),
+      }),
+      markIncorrectAnswer: assign({
+        stats: ctx => ({
+          ...ctx.stats!,
+          totalCount: ctx.stats!.totalCount + 1,
+        }),
       }),
     },
     guards: {

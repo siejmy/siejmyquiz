@@ -1,4 +1,8 @@
 import { QuizABCD } from '@/domain'
+import {
+  resultsRepositoryFirestore,
+  statsEntryRepositoryFirestore,
+} from '@/services'
 import { interpret } from 'xstate'
 
 import { ABCDQuizInterpreter, abcdQuizMachine, initialContext } from './machine'
@@ -13,8 +17,8 @@ export function interpretMachine({
       .withConfig({
         services: {
           saveResults: async ctx => {
-            // await saveResults(ctx.result)
-            // await saveStatsEntry(ctx.stats)
+            await resultsRepositoryFirestore.saveResult(ctx.result)
+            await statsEntryRepositoryFirestore.saveStatsEntry(ctx.stats!)
           },
         },
       })

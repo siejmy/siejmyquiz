@@ -5,9 +5,15 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    match /firestore_demo/{doc} {
-      allow read: if true;
-      allow write: if false;
+    match /results/{doc} {
+      allow get: if true;
+      allow create: if true;
+    }
+
+    match /stats_entries/{quizId}/entries/{doc} {
+      allow list: if true;
+      allow get: if true;
+      allow create: if true;
     }
   }
 }

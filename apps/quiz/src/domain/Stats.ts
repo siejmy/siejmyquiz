@@ -11,14 +11,6 @@ export interface StatsSummary {
   average: number
 }
 
-export interface StatsEntryRepository {
-  putEntry(entry: StatsEntry): Promise<void>
-}
-
-export interface StatsSummaryService {
-  getStatsSummaryForQuiz(quizId: string): Promise<StatsSummary>
-}
-
 export function validateStatsEntry(
   o: StatsEntry | any,
 ): asserts o is StatsEntry {
