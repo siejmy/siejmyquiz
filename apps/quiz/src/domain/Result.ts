@@ -13,9 +13,5 @@ export function validateResult(o: Result | any): asserts o is Result {
   ow(o.name, 'Result.name', ow.string)
   ow(o.quizJSON, 'Result.quizJSON', ow.string)
 
-  ow(
-    o.histogram,
-    'Result.answers',
-    ow.array.ofType(ow.number.finite.integer.positive),
-  )
+  ow(o.answers, 'Result.answers', ow.array.ofType(ow.number.finite.integer))
 }

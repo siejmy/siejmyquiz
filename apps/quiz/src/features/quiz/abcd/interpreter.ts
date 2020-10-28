@@ -27,4 +27,7 @@ export function interpretMachine({
         quiz,
       }),
   )
+    .onTransition(state => console.log(state.toStrings()))
+    .onEvent(evt => console.log(evt))
+    .onChange(ctx => console.log(ctx))
 }
