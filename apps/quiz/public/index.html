@@ -48,26 +48,10 @@
       firebase.initializeApp(firebaseConfig)
     </script>
     <script>
-      /*
-
-      export interface QuizABCD {
-  id: string
-  type: 'abcd'
-  introHtml: string
-  questions: QuizABCDQuestion[]
-}
-
-export interface QuizABCDQuestion {
-  title: string
-  imageUrl: string
-  distractors: string[]
-  correctNo: number
-}
-
-*/
       window.onload = function() {
         mountQuiz('#app', {
           title: 'Sanktuaria w Polsce',
+          reCaptchaKey: '6Le8g9wZAAAAAP4IGzG3h1eSg-59l3m9t59qrJ8M',
           quiz: {
             id: 'sanktuaria-demo',
             type: 'abcd',
@@ -86,7 +70,7 @@ export interface QuizABCDQuestion {
                 ],
                 correctNo: 0,
               },
-              {
+              /*{
                 title: 'Co to za sanktuarium?',
                 imageUrl:
                   'http://hmt.org.pl/wp-content/uploads/2017/05/2-Ksiga-prb-i-podziekowa-400x320.jpg',
@@ -121,7 +105,7 @@ export interface QuizABCDQuestion {
                   'Gietrzwałd',
                 ],
                 correctNo: 1,
-              },
+              },*/
             ],
           },
         })
