@@ -1,6 +1,6 @@
 <template>
   <div id="page-quiz">
-    <h1>{{ name }}</h1>
+    <h1>{{ title }}</h1>
 
     <ABCDQuizView v-if="type === 'abcd'" :quiz="quiz" />
     <div v-else>
@@ -13,6 +13,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
+import { Configuration } from '../../Configuration'
 import { Quiz } from '../../domain'
 
 import { ABCDQuizView } from './abcd'
@@ -23,11 +24,17 @@ import { ABCDQuizView } from './abcd'
   },
 })
 export default class QuizPage extends Vue {
-  @Prop({ required: true, type: String })
-  public name!: string
+  get config(): Configuration {
+    return this.$root.$data.config
+  }
 
-  @Prop({ required: true, type: Object })
-  public quiz!: Quiz
+  get title(): string {
+    return this.config.title
+  }
+
+  get quiz(): Quiz {
+    return this.config.quiz
+  }
 
   get type(): string {
     return this.quiz.type

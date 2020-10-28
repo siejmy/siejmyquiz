@@ -9,7 +9,7 @@ export interface QuizABCD {
 
 export interface QuizABCDQuestion {
   title: string
-  imageUrl: string
+  imageUrl?: string
   distractors: string[]
   correctNo: number
 }
@@ -28,7 +28,11 @@ export function validateQuizABCDQuestion(
 ): asserts o is QuizABCDQuestion {
   ow(o, 'QuizABCDQuestion', ow.object)
   ow(o.title, 'QuizABCD.title', ow.string.nonEmpty)
-  ow(o.imageUrl, 'QuizABCD.imageUrl', ow.string.nonEmpty.url)
+  ow(
+    o.imageUrl,
+    'QuizABCD.imageUrl',
+    ow.any(ow.undefined, ow.string.nonEmpty.url),
+  )
   ow(o.distractors, 'QuizABCD.distractors', ow.array.ofType(ow.string.nonEmpty))
   ow(o.correctNo, 'QuizABCD.correctNo', ow.number.positive.integer.finite)
 }

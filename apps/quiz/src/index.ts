@@ -13,7 +13,7 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(BootstrapVue)
 
-export function mountQuiz(tag: string, _: Configuration) {
+export function mountQuiz(tag: string, config: Configuration) {
   const routes = [
     { path: '/', component: QuizPage },
     { path: '/results/:id', component: ResultsPage },
@@ -25,5 +25,8 @@ export function mountQuiz(tag: string, _: Configuration) {
       mode: 'hash',
       routes,
     }),
+    data: {
+      config,
+    },
   }).$mount(tag)
 }

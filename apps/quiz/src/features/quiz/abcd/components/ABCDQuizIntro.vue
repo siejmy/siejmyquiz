@@ -3,6 +3,10 @@
     <h2>Zaczynamy quiz?</h2>
 
     <p v-html="introHtml"></p>
+
+    <b-button variant="primary" @click="next()">
+      Dalej
+    </b-button>
   </div>
 </template>
 
@@ -23,6 +27,10 @@ export default class extends Vue {
 
   public get introHtml(): string {
     return this.state.context.quiz.introHtml
+  }
+
+  public next() {
+    this.interpreter.send({ type: 'NEXT' })
   }
 }
 </script>
