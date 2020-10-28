@@ -16,5 +16,13 @@ export default class extends Vue {
 
   @Prop({ required: true })
   public state!: ABCDQuizInterpreter['state']
+
+  get resultsId(): string {
+    return this.state.context.result.id
+  }
+
+  public mounted() {
+    this.$router.push({ path: '/results/' + this.resultsId })
+  }
 }
 </script>
