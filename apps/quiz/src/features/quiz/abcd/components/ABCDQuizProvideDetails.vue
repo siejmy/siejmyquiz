@@ -79,7 +79,6 @@ export default class extends Vue {
   }
 
   public get reCaptchaKey(): string {
-    console.log('Key', this.config.reCaptchaKey)
     return this.config.reCaptchaKey
   }
 
@@ -88,7 +87,7 @@ export default class extends Vue {
   }
 
   public submitEmptyName() {
-    return this.interpreter.send({ type: 'SET_NAME', name: this.name })
+    return this.interpreter.send({ type: 'SET_NAME', name: '' })
   }
 
   public sendNotARobot() {

@@ -43,7 +43,6 @@ export interface Context {
   result: Result
   stats?: StatsEntry
   currentQuestionNo: number
-  name?: string
 }
 
 export const initialContext: Context = {
@@ -129,7 +128,12 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
             on: {
               SET_NAME: {
                 target: 'NotARobot',
-                actions: (_, evt) => assign({ name: evt.name }),
+                actions: assign({
+                  result: (ctx, evt) => ({
+                    ...ctx.result,
+                    name: evt.name,
+                  }),
+                }),
               },
             },
           },

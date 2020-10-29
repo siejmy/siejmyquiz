@@ -10,7 +10,7 @@ export interface QuizABCD {
 export interface QuizABCDQuestion {
   title: string
   imageUrl?: string
-  questions: string[]
+  distractors: string[]
   correctNo: number
 }
 
