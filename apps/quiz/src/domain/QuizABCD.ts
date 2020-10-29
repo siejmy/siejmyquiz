@@ -4,6 +4,7 @@ export interface QuizABCD {
   id: string
   type: 'abcd'
   introHtml: string
+  introImageUrl: string
   questions: QuizABCDQuestion[]
 }
 
@@ -18,6 +19,7 @@ export function validateQuizABCD(o: QuizABCD | any): asserts o is QuizABCD {
   ow(o, 'QuizABCD', ow.object)
   ow(o.id, 'QuizABCD.id', ow.string.nonEmpty)
   ow(o.introHtml, 'QuizABCD.introHtml', ow.string.nonEmpty)
+  ow(o.introImageUrl, 'QuizABCD.introImageUrl', ow.string.nonEmpty)
   ow(o.type, 'QuizABCD.type', ow.string.equals('abcd'))
   ow(o.questions, 'QuizABCD.questions', ow.array.ofType(ow.object))
   o.questions.forEach((q: any) => validateQuizABCDQuestion(q))

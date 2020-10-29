@@ -1,6 +1,8 @@
 <template>
   <div id="page-quiz">
-    <h1>{{ title }}</h1>
+    <b-row>
+      <h1>{{ title }}</h1>
+    </b-row>
 
     <ABCDQuizView v-if="type === 'abcd'" :quiz="quiz" />
     <div v-else>

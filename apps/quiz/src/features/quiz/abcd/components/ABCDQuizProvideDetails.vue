@@ -1,23 +1,31 @@
 <template>
-  <div class="quiz-provide-details">
-    <h2>Zanim zobaczysz wyniki</h2>
-    <p>
-      Zanim zobaczysz wyniki, powiedz nam jak masz na imię oraz udowodnij, że
-      nie jesteś robotem. Twoje imię jest nam potrzebne do stworzenia
-      spersonalizowanej strony wyników. Możesz go nie podawać.
-    </p>
-    <div v-if="isStateName || isStateRobot || isStateSeeDetails">
-      <h3>1/2 Podaj nam swoje imię</h3>
+  <div>
+    <b-card
+      v-if="isStateName || isStateRobot || isStateSeeDetails"
+      tag="article"
+      class="provide-card mb-4"
+      title="Zanim zobaczysz wyniki"
+    >
+      <p class="mb-4">
+        Zanim zobaczysz wyniki, powiedz nam jak masz na imię oraz udowodnij, że
+        nie jesteś robotem. Twoje imię jest nam potrzebne do stworzenia
+        spersonalizowanej strony wyników. Możesz go nie podawać.
+      </p>
+
+      <h4>1/2 Podaj nam swoje imię</h4>
       <b-form-input
         v-model="name"
         placeholder="Podaj swoje imię"
+        class="mb-2"
       ></b-form-input>
       <b-button
         variant="primary"
         :disabled="!isStateName || name.length === 0"
         @click="submitName()"
-        >Zapisz</b-button
+        class="mr-2"
       >
+        Zapisz
+      </b-button>
       <b-button
         variant="secondary"
         size="sm"
@@ -25,21 +33,26 @@
         @click="submitEmptyName()"
         >Wolę nie podawać imienia</b-button
       >
-    </div>
-    <div v-if="isStateRobot || isStateSeeDetails">
-      <h3>2/2 Udowodnij, że nie jesteś robotem</h3>
+    </b-card>
+    <b-card
+      v-if="isStateRobot || isStateSeeDetails"
+      tag="article"
+      class="provide-card mb-4"
+      title="2/2 Udowodnij, że nie jesteś robotem"
+    >
       <vue-recaptcha
         :sitekey="reCaptchaKey"
         :loadRecaptchaScript="true"
         @verify="sendNotARobot()"
         @error="reCaptchaError($event)"
       ></vue-recaptcha>
-    </div>
-    <div v-if="isStateSeeDetails">
-      <b-button variant="primary" size="lg" @click="next()"
-        >Zobacz wyniki</b-button
-      >
-    </div>
+
+      <div v-if="isStateSeeDetails">
+        <b-button variant="primary" size="lg" @click="next()">
+          Zobacz wyniki
+        </b-button>
+      </div>
+    </b-card>
   </div>
 </template>
 
@@ -103,3 +116,8 @@ export default class extends Vue {
   }
 }
 </script>
+<style scoped>
+.provide-card {
+  width: 100%;
+}
+</style>

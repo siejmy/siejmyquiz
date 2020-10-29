@@ -1,41 +1,70 @@
 <template>
-  <div class="quiz-question">
-    <img v-if="imageUrl" :src="imageUrl" :alt="title" />
-    <h2>#{{ questionNumber + 1 }} {{ title }}</h2>
+  <b-card
+    no-body
+    :img-src="imageUrl"
+    :img-alt="title"
+    img-top
+    tag="article"
+    class="quiz-question-card mb-2 mr-2"
+    :border-variant="borderVariant"
+  >
+    <b-card-body>
+      <b-card-title>
+        #{{ questionNumber + 1 }}/{{ totalQuestions }}
+        {{ title }}
+      </b-card-title>
+    </b-card-body>
 
-    <b-form-group label="Wybierz prawidłową odpowiedź">
-      <b-form-radio
-        v-for="(distractor, index) in distractors"
-        :key="distractor"
-        v-model="selectedAnswerNo"
-        name="select-distractors"
-        :value="index"
-        :disabled="isAnswered"
-      >
-        {{ distractor }}
-      </b-form-radio>
+    <b-card-body>
+      <b-card-text>
+        Wybierz prawidłową odpowiedź:
+      </b-card-text>
+    </b-card-body>
+
+    <b-form-group>
+      <b-list-group flush>
+        <b-list-group-item
+          class="distractor-list-item"
+          v-for="(distractor, index) of distractors"
+          :key="distractor"
+          :variant="getDistractorColorVariant(index)"
+          @click="selectiDistractor(index)"
+        >
+          <b-form-radio
+            v-model="selectedAnswerNo"
+            name="select-distractors"
+            :value="index"
+            :disabled="isAnswered"
+          >
+            {{ distractor }}
+          </b-form-radio>
+        </b-list-group-item>
+      </b-list-group>
     </b-form-group>
 
-    <b-alert v-if="isAnsweredCorrectly" variant="success" show>
-      Prawidłowa odpowiedź!
-    </b-alert>
-    <b-alert v-if="isAnsweredIncorrectly" variant="warning" show>
-      Prawidłowa odpowiedź to: {{ correctDistractorText }}
-    </b-alert>
+    <b-card-body>
+      <b-button
+        v-if="!isAnswered"
+        @click="submitAnswer()"
+        :disabled="isAnswerButtonDisabled"
+        variant="primary"
+      >
+        Odpowiedz
+      </b-button>
 
-    <b-button
-      v-if="!isAnswered"
-      @click="submitAnswer()"
-      :disabled="isAnswerButtonDisabled"
-      variant="primary"
-    >
-      Odpowiedz
-    </b-button>
-
-    <b-button v-if="isAnswered" @click="next()" variant="primary">
-      Dalej
-    </b-button>
-  </div>
+      <b-button v-if="isAnswered" @click="next()" variant="primary">
+        Dalej
+      </b-button>
+    </b-card-body>
+    <b-card-body>
+      <b-alert v-if="isAnsweredCorrectly" variant="success" show>
+        Prawidłowa odpowiedź!
+      </b-alert>
+      <b-alert v-if="isAnsweredIncorrectly" variant="warning" show>
+        Prawidłowa odpowiedź to: {{ correctDistractorText }}
+      </b-alert>
+    </b-card-body>
+  </b-card>
 </template>
 
 <script lang="ts">
@@ -72,6 +101,10 @@ export default class extends Vue {
     return this.state.context.currentQuestionNo
   }
 
+  public get totalQuestions() {
+    return this.state.context.quiz.questions.length
+  }
+
   public get question(): QuizABCDQuestion {
     return this.state.context.quiz.questions[this.questionNumber]
   }
@@ -96,6 +129,30 @@ export default class extends Vue {
     return this.selectedAnswerNo < 0
   }
 
+  public get borderVariant() {
+    if (this.isAnsweredCorrectly) {
+      return 'success'
+    } else if (this.isAnsweredIncorrectly) {
+      return 'warning'
+    }
+    return 'secondary'
+  }
+
+  public getDistractorColorVariant(index: number) {
+    if (!this.isAnswered) {
+      return 'light'
+    } else if (index === this.question.correctNo) {
+      return 'success'
+    } else if (index === this.selectedAnswerNo) {
+      return 'warning'
+    }
+    return 'light'
+  }
+
+  public selectiDistractor(index: number) {
+    this.selectedAnswerNo = index
+  }
+
   public submitAnswer() {
     this.interpreter.send({ type: 'ANSWER', no: this.selectedAnswerNo || 0 })
   }
@@ -107,8 +164,11 @@ export default class extends Vue {
 }
 </script>
 <style scoped>
-.quiz-question img {
-  margin: 0 auto;
-  max-width: 80%;
+.distractor-list-item {
+  cursor: pointer;
+}
+
+.quiz-question-card {
+  width: 100%;
 }
 </style>

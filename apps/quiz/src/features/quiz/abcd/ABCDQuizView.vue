@@ -1,5 +1,5 @@
 <template>
-  <div id="abcd-quiz-view">
+  <b-row id="abcd-quiz-view">
     <state-matches :state="state">
       <template #Intro>
         <ABCDQuizIntro :interpreter="interpreter" :state="state" />
@@ -26,7 +26,7 @@
         <ABCDQuizTemporaryResults :interpreter="interpreter" :state="state" />
       </template>
     </state-matches>
-  </div>
+  </b-row>
 </template>
 
 <script lang="ts">

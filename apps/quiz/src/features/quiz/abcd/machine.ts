@@ -50,6 +50,7 @@ export const initialContext: Context = {
     type: 'abcd',
     id: '',
     introHtml: '',
+    introImageUrl: '',
     questions: [],
   },
   result: {

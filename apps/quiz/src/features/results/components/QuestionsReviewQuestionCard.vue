@@ -5,12 +5,12 @@
     :img-alt="title"
     img-top
     tag="article"
-    style="max-width: 20rem;"
-    class="mb-2 mr-2"
+    style="max-width: 210px;"
+    class="question-review-card mb-2 mr-1 ml-1"
     :border-variant="isCorrect ? 'success' : 'warning'"
   >
     <b-card-body>
-      <b-card-title>{{ title }}</b-card-title>
+      <b-card-title class="card-title">{{ title }}</b-card-title>
     </b-card-body>
 
     <b-list-group flush>
@@ -63,11 +63,19 @@ export default class extends Vue {
     if (index === this.question.correctNo) {
       return 'success'
     } else if (index === this.selectedAnswer) {
-      return 'danger'
+      return 'warning'
     }
     return 'light'
   }
 }
 </script>
 
-<style></style>
+<style scoped>
+.question-review-card {
+  font-size: 75%;
+}
+
+.card-title {
+  font-size: 120%;
+}
+</style>

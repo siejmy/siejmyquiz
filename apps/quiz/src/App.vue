@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <b-container fluid>
+      <router-view />
+    </b-container>
   </div>
 </template>
 
@@ -13,5 +15,7 @@ export default class App extends Vue {}
 
 <style>
 #app {
+  max-width: 700px;
+  margin: 0 auto;
 }
 </style>
