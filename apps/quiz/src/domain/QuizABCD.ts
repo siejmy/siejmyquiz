@@ -30,11 +30,7 @@ export function validateQuizABCDQuestion(
 ): asserts o is QuizABCDQuestion {
   ow(o, 'QuizABCDQuestion', ow.object)
   ow(o.title, 'QuizABCD.title', ow.string.nonEmpty)
-  ow(
-    o.imageUrl,
-    'QuizABCD.imageUrl',
-    ow.any(ow.undefined, ow.string.nonEmpty.url),
-  )
+  ow(o.imageUrl, 'QuizABCD.imageUrl', ow.any(ow.undefined, ow.string.nonEmpty))
   ow(o.distractors, 'QuizABCD.distractors', ow.array.ofType(ow.string.nonEmpty))
   ow(o.correctNo, 'QuizABCD.correctNo', ow.number.integer.finite)
 }

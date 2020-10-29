@@ -7,6 +7,10 @@
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.0.0/firebase-app.js"></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"
+    ></script>
     <!-- include only the Firebase features as you need -->
     <!-- <script defer src="/__/firebase/8.0.0/firebase-auth.js"></script> -->
     <!-- <script defer src="/__/firebase/8.0.0/firebase-database.js"></script> -->
@@ -36,11 +40,68 @@
       </a>
     </div>
 
-    <div id="quiz">Ładowanie...</div>
+    <div id="quiz-app">Ładowanie...</div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        quiz.mountQuiz("#quiz", {});
+        quiz.mountQuiz("#quiz-app", {
+          title: "Sanktuaria w Polsce",
+          reCaptchaKey: "6Le8g9wZAAAAAP4IGzG3h1eSg-59l3m9t59qrJ8M",
+          facebookAppId: "357764061986952",
+          quiz: {
+            id: "sanktuaria-demo",
+            type: "abcd",
+            introHtml:
+              "Czy potrafisz rozpoznać, który wizarunek Matki Przenajświętszej pochodzi z jakiego sanktuarium?",
+            introImageUrl: "sanktuaria-4.jpg",
+            questions: [
+              {
+                title: "Co to za sanktuarium?",
+                imageUrl: "sanktuaria-1.jpg",
+                distractors: [
+                  "Częstochowa",
+                  "Ostrożany",
+                  "Obory",
+                  "Gietrzwałd",
+                ],
+                correctNo: 0,
+              },
+              {
+                title: "Co to za sanktuarium?",
+                imageUrl: "sanktuaria-2.jpg",
+                distractors: [
+                  "Częstochowa",
+                  "Ostrożany",
+                  "Obory",
+                  "Gietrzwałd",
+                ],
+                correctNo: 3,
+              },
+              {
+                title: "Co to za sanktuarium?",
+                imageUrl: "sanktuaria-3.jpg",
+                distractors: [
+                  "Częstochowa",
+                  "Ostrożany",
+                  "Obory",
+                  "Gietrzwałd",
+                ],
+                correctNo: 2,
+              },
+              {
+                title: "Co to za sanktuarium?",
+                imageUrl: "sanktuaria-4.jpg",
+                distractors: [
+                  "Częstochowa",
+                  "Ostrożany",
+                  "Obory",
+                  "Gietrzwałd",
+                ],
+                correctNo: 1,
+              },
+            ],
+          },
+        });
       });
     </script>
 
