@@ -6,7 +6,7 @@
       wyobrażaliśmy. Jeśli mimo wszystko chciałbyś nam pomóc, skontaktuj się z
       nami i opowiedz o tej sytuacji! Będziemy naprawdę bardzo wdzięczni!
     </Error>
-    <ResultsPresenter v-if="result" :result="result" />
+    <ResultsPresenter v-if="result" :result="result" :share-enabled="true" />
   </div>
 </template>
 
