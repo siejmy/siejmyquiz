@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
 
 export const result_cbC8qrjxSk7UWmaHhslI = functions
-  .region("us-central1")
+  .region("europe-west3")
   .runWith({
     timeoutSeconds: 2,
     memory: "1GB",
