@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - run: npm i -g firebase-tools
+      - run: npm install firebase-tools
       - run: npm --prefix="./functions" ci
       - run: npm --prefix="./functions" run build
       - run: echo "${FRBS_SRV_ACCNT}" > "gcp-srv-accnt.json"
