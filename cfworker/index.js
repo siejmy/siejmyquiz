@@ -44,6 +44,13 @@ async function handleRequest(request) {
 async function queryFunction(name, params) {
   const url = getFunctionUrl(name) + "/" + params.join("/");
   const fetchResponse = await fetch(url);
-  if (!fetchResponse.ok) throw new Error("Invalid response");
+  if (!fetchResponse.ok) {
+    if(fetchResponse.status === 404) {
+      returnnew Response('Not found', { status: 404 });
+    }
+    else {
+      throw new Error("Invalid response");
+    }
+  }
   return new Response(fetchResponse.body);
 }
