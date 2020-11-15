@@ -38,7 +38,6 @@ async function handleRequest(request) {
 
 async function queryFunction(name, params) {
   const url = getFunctionUrl(name) + "/" + params.join("/");
-  return new Response("Fetching " + url);
   const fetchResponse = await fetch(url);
   if (!fetchResponse.ok) throw new Error("Invalid response");
   return new Response(fetchResponse.body);
