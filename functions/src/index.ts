@@ -1,4 +1,5 @@
 import * as functions from "firebase-functions";
+import { handleResultFn } from "./result";
 
 export const result_cbC8qrjxSk7UWmaHhslI = functions
   .region("europe-west3")
@@ -6,8 +7,6 @@ export const result_cbC8qrjxSk7UWmaHhslI = functions
     timeoutSeconds: 2,
     memory: "1GB",
   })
-  .https.onRequest((request, response) => {
-    functions.logger.info("Hello logs!", { structuredData: true });
-    functions.logger.info(request, { structuredData: true });
-    response.send("Hello from Firebase!");
+  .https.onRequest(async (request, response) => {
+    response.send(await handleResultFn(request.url));
   });
