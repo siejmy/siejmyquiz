@@ -14,11 +14,12 @@ jobs:
         uses: actions/checkout@master
       - run: npm --prefix="./functions" ci
       - run: npm --prefix="./functions" run build
-      - run: echo "${FRBS_SRV_ACCNT}" > "${GOOGLE_APPLICATION_CREDENTIALS}"
+      - run: echo "${FRBS_SRV_ACCNT}" > "gcp-srv-accnt.json"
+      - run: ls .
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only functions
         env:
           FRBS_SRV_ACCNT: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIEJMY }}"
-          GOOGLE_APPLICATION_CREDENTIALS: "/gcp-srv-accnt.json"
+          GOOGLE_APPLICATION_CREDENTIALS: "gcp-srv-accnt.json"
