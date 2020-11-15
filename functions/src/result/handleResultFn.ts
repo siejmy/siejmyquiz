@@ -1,4 +1,4 @@
-import { Result, validateResult } from "./types";
+import { Result } from "./types";
 
 export function handleResultFn(result: Result) {
   // validateResult(result);
