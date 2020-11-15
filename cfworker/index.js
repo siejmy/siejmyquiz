@@ -4,6 +4,8 @@ const getFunctionUrl = (name) =>
   name +
   "_cbC8qrjxSk7UWmaHhslI";
 
+const allowedFunctions = ["result"];
+
 /** Worker */
 
 addEventListener("fetch", (event) => {
@@ -30,6 +32,9 @@ async function handleRequest(request) {
     return new Response("Invalid url", { status: 404 });
   }
   const functionName = pathElems[2];
+  if (!allowedFunctions.includes(functionName)) {
+    throw new Error("Disallowed function");
+  }
   const params = pathElems.slice(3);
   const response = await queryFunction(functionName, params);
   response.headers.set("Cache-Control", "max-age=" + 3600 * 24 * 3);
