@@ -45,10 +45,9 @@ async function queryFunction(name, params) {
   const url = getFunctionUrl(name) + "/" + params.join("/");
   const fetchResponse = await fetch(url);
   if (!fetchResponse.ok) {
-    if(fetchResponse.status === 404) {
-      returnnew Response('Not found', { status: 404 });
-    }
-    else {
+    if (fetchResponse.status === 404) {
+      return new Response("Not found", { status: 404 });
+    } else {
       throw new Error("Invalid response");
     }
   }
