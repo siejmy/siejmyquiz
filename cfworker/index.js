@@ -38,6 +38,7 @@ async function handleRequest(request) {
   const params = pathElems.slice(3);
   const response = await queryFunction(functionName, params);
   response.headers.set("Cache-Control", "max-age=" + 3600 * 24 * 3);
+  response.headers.set("Content-type", "text/html; charset=utf-8");
   return response;
 }
 
