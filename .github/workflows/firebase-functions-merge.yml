@@ -17,7 +17,7 @@ jobs:
       - run: npm --prefix="./functions" run build
       - run: echo "${FRBS_SRV_ACCNT}" > "gcp-srv-accnt.json"
       - run: ls .
-      - run: firebase deploy --only functions
+      - run: npx firebase deploy --only functions
         env:
           FRBS_SRV_ACCNT: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIEJMY }}"
           GOOGLE_APPLICATION_CREDENTIALS: "gcp-srv-accnt.json"
