@@ -26,12 +26,11 @@ async function handleRequest(request) {
 
   const parsedUrl = new URL(request.url);
   const pathElems = parsedUrl.pathname.split("/");
-  if (pathElems.length < 2) {
+  if (pathElems.length < 3) {
     return new Response("Invalid url", { status: 404 });
   }
-  return new Response("pathElems: '" + pathElems.join("', '") + "'");
-  const functionName = pathElems[1];
-  const params = pathElems.slice(2);
+  const functionName = pathElems[2];
+  const params = pathElems.slice(3);
   const response = await queryFunction(functionName, params);
   response.headers.set("Cache-Control", "max-age=" + 3600 * 24 * 3);
   return response;
