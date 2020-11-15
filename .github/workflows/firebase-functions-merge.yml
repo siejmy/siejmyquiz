@@ -15,9 +15,8 @@ jobs:
       - run: npm install firebase-tools
       - run: npm --prefix="./functions" ci
       - run: npm --prefix="./functions" run build
-      - run: echo "${FRBS_SRV_ACCNT}" > "gcp-srv-accnt.json"
+      - run: echo "${FRBS_SRV_ACCNT}" > "${GITHUB_WORKSPACE}/gcp-srv-accnt.json"
       - run: ls .
-      - run: npx firebase deploy --only functions
+      - run: GOOGLE_APPLICATION_CREDENTIALS="${GITHUB_WORKSPACE}/gcp-srv-accnt.json" npx firebase deploy --only functions
         env:
           FRBS_SRV_ACCNT: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SIEJMY }}"
-          GOOGLE_APPLICATION_CREDENTIALS: "gcp-srv-accnt.json"
