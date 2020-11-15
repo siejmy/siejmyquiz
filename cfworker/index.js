@@ -29,6 +29,7 @@ async function handleRequest(request) {
   if (pathElems.length < 2) {
     return new Response("Invalid url", { status: 404 });
   }
+  return new Response("pathElems: '" + pathElems.join("', '") + "'");
   const functionName = pathElems[1];
   const params = pathElems.slice(2);
   const response = await queryFunction(functionName, params);
