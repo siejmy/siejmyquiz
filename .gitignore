@@ -1,5 +1,7 @@
 .DS_Store
 
+/functions2
+
 # Logs
 logs
 *.log
