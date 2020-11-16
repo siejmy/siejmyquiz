@@ -19,15 +19,13 @@ fi
 
 gcloud config set project "${GCP_PROJECT_ID}"
 
-(
-  echo "Deploying ResultCbC8qrjxSk7UWmaHhslI"
-  gcloud functions deploy ResultCbC8qrjxSk7UWmaHhslI \
-    --trigger-http --allow-unauthenticated \
-    --region "${GCP_PROJECT_REGION}" \
-    --runtime go113 \
-    --quiet \
-    --timeout=2s \
-    --memory "1024MB"
-) &
 
-wait
+echo "Deploying Result(...)"
+gcloud functions deploy ResultCbC8qrjxSk7UWmaHhslI \
+  --trigger-http --allow-unauthenticated \
+  --region "${GCP_PROJECT_REGION}" \
+  --runtime go113 \
+  --quiet \
+  --timeout=2s \
+  --memory "1024MB"
+
