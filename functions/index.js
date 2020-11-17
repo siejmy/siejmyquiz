@@ -17,4 +17,10 @@ app.get("/:resultId", async (req, res) => {
   });
 });
 
-exports.result_CbC8qrjxSk7UWmaHhslI = functions.https.onRequest(app);
+exports.result_CbC8qrjxSk7UWmaHhslI = functions
+  .region("europe-west3")
+  .runWith({
+    timeoutSeconds: 2,
+    memory: "1GB",
+  })
+  .https.onRequest(app);
