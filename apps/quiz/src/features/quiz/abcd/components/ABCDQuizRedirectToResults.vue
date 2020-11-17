@@ -18,11 +18,11 @@ export default class extends Vue {
   public state!: ABCDQuizInterpreter['state']
 
   get resultsId(): string {
-    return this.state.context.result.id
+    return this.state.context.resultData.id
   }
 
   public mounted() {
-    this.$router.push({ path: '/results/' + this.resultsId })
+    window.location.href = '/q/results/' + this.resultsId
   }
 }
 </script>

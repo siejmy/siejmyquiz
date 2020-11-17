@@ -1,30 +1,22 @@
 <template>
   <div id="quiz-temporary-results">
-    <ResultsPresenter :result="result" :share-enabled="false" />
+    <b-alert variant="error" show>
+      Błąd: nie można zapisać wyników.
+    </b-alert>
   </div>
 </template>
 
 <script lang="ts">
-import { Result } from '@/domain'
-import { ResultsPresenter } from '@/features/results'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import { ABCDQuizInterpreter } from '../machine'
 
-@Component({
-  components: {
-    ResultsPresenter,
-  },
-})
+@Component
 export default class extends Vue {
   @Prop({ required: true })
   public interpreter!: ABCDQuizInterpreter
 
   @Prop({ required: true })
   public state!: ABCDQuizInterpreter['state']
-
-  public get result(): Result {
-    return this.state.context.result
-  }
 }
 </script>
