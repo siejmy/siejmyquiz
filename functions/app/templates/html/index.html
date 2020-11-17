@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ .Quiz.Title }}</title>
+
+    <script defer src="/__/firebase/8.0.0/firebase-app.js"></script>
+
+    <script defer src="/__/firebase/8.0.0/firebase-analytics.js"></script>
+
+    <script defer src="/__/firebase/init.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"
+    ></script>
+    <link href="/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="https://siejmy.pl">
+        <div class="logo">
+          <img src="/assets/siejmy-logo-bez-tekstu.png" alt="Logo siejmy" />
+        </div>
+        <div class="title">
+          <p>SIEJMY <span>quiz</span></p>
+        </div>
+      </a>
+    </div>
+    <h1>Lista naszych quizów</h1>
+    <ul>
+      <a href="/sanktuaria"
+        >Ile z Polskich sanktuariów jesteś w stanie rozpoznać?</a
+      >
+    </ul>
+  </body>
+</html>
