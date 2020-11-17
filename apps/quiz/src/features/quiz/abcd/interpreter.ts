@@ -1,4 +1,4 @@
-import { QuizABCD } from '@/domain'
+import { makeDenormedResultQuizABCD, QuizABCD } from '@/domain'
 import {
   resultsRepositoryFirestore,
   statsEntryRepositoryFirestore,
@@ -17,8 +17,15 @@ export function interpretMachine({
       .withConfig({
         services: {
           saveResults: async ctx => {
-            await resultsRepositoryFirestore.saveResult(ctx.result)
             await statsEntryRepositoryFirestore.saveStatsEntry(ctx.stats!)
+            const statsEntries = await statsEntryRepositoryFirestore //
+              .getAllEntriesForQuiz(ctx.quiz.id)
+            const result = makeDenormedResultQuizABCD(
+              ctx.resultData,
+              ctx.quiz,
+              statsEntries,
+            )
+            await resultsRepositoryFirestore.saveResult(result)
           },
         },
       })

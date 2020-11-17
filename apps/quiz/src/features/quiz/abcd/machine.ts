@@ -1,5 +1,5 @@
 // tslint:disable trailing-comma
-import { QuizABCD, Result, StatsEntry } from '@/domain'
+import { QuizABCD, StatsEntry } from '@/domain'
 import { v4 as uuid } from 'uuid'
 import { assign, Interpreter, Machine } from 'xstate'
 
@@ -40,7 +40,7 @@ export type Events =
 
 export interface Context {
   quiz: QuizABCD
-  result: Result
+  resultData: { id: string; answers: number[]; name: string }
   stats?: StatsEntry
   currentQuestionNo: number
 }
@@ -53,10 +53,9 @@ export const initialContext: Context = {
     introImageUrl: '',
     questions: [],
   },
-  result: {
+  resultData: {
     id: uuid(),
     name: '',
-    quizJSON: '',
     answers: [],
   },
   currentQuestionNo: 0,
@@ -130,8 +129,8 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
               SET_NAME: {
                 target: 'NotARobot',
                 actions: assign({
-                  result: (ctx, evt) => ({
-                    ...ctx.result,
+                  resultData: (ctx, evt) => ({
+                    ...ctx.resultData,
                     name: evt.name,
                   }),
                 }),
@@ -176,12 +175,6 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
   {
     actions: {
       logError: (_, { data }: any) => console.error(new Error(data)),
-      assignQuizToResults: assign({
-        result: ctx => ({
-          ...ctx.result,
-          quizJSON: JSON.stringify(ctx.quiz),
-        }),
-      }),
       initializeStats: assign({
         stats: ctx => ({
           quizId: ctx.quiz.id,
@@ -193,9 +186,9 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
         currentQuestionNo: ctx => ctx.currentQuestionNo + 1,
       }),
       markAnswer: assign({
-        result: (ctx, evt) => ({
-          ...ctx.result,
-          answers: [...ctx.result.answers, (evt as any).no],
+        resultData: (ctx, evt) => ({
+          ...ctx.resultData,
+          answers: [...ctx.resultData.answers, (evt as any).no],
         }),
       }),
       markCorrectAnswer: assign({
