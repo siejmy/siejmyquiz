@@ -1,7 +1,7 @@
 /** Config */
 const fnMappings = {
   result:
-    "https://europe-west3-siejmy.cloudfunctions.net/ResultCbC8qrjxSk7UWmaHhslI",
+    "https://europe-west3-siejmy.cloudfunctions.net/result_CbC8qrjxSk7UWmaHhslI",
 };
 
 /** Worker */
