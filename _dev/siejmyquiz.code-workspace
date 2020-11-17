@@ -21,7 +21,7 @@
     "editor.insertSpaces": true,
     "files.insertFinalNewline": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.rulers": [96, 100],
+    "editor.rulers": [76, 80],
     "editor.minimap.maxColumn": 90,
     "editor.formatOnPaste": false,
     "editor.formatOnType": false,
