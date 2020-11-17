@@ -29,7 +29,7 @@ export function validateStatsSummary(
   o: StatsSummary | any,
 ): asserts o is StatsSummary {
   ow(o, 'StatsSummary', ow.object)
-  ow(o.average, 'StatsSummary.average', ow.number.finite.integer.positive)
+  ow(o.average, 'StatsSummary.average', ow.number.finite)
   ow(
     o.histogram,
     'StatsSummary.histogram',
