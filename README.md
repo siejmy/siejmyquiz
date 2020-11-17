@@ -2,8 +2,6 @@
 
 Ewangelizujące quizy i gry
 
-## UWAGA — funkcje naley deployować ręcznie za pomocą `./functions/deploy.sh`
-
 Architektura:
 
 - aplikacje w folderze /apps
