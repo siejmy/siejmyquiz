@@ -31,8 +31,8 @@ export function validateStatsSummary(
   ow(o, 'StatsSummary', ow.object)
   ow(o.average, 'StatsSummary.average', ow.number.finite)
   ow(
-    o.histogram,
-    'StatsSummary.histogram',
+    o.decileHistogram,
+    'StatsSummary.decileHistogram',
     ow.array.ofType(ow.number.finite.integer.greaterThanOrEqual(0)),
   )
 }
