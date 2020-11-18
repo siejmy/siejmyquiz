@@ -17,10 +17,9 @@ app.get("/:resultId", async (req, res) => {
     res.status(404);
     return res.render("404");
   }
-  const result = await admin
-    .firestore()
-    .doc("results/" + resultId)
-    .get();
+  const docPath = "results/" + resultId;
+  console.log("docPath=" + docPath);
+  const result = await admin.firestore().doc(docPath).get();
   const data = result && result.exists && result.data();
   if (!data) {
     res.status(404);
