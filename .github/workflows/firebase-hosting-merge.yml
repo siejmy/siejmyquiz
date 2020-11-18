@@ -18,19 +18,21 @@ jobs:
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
       - run: |
-        curl -s \
-          --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
-          --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
-          --form-string "message=Siejmyquiz hosting deployment done" \
-          https://api.pushover.net/1/messages.json
-      - name: 'Notify on failure'
+          curl -s \
+            --fail \
+            --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
+            --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
+            --form-string "message=Siejmyquiz hosting deployment done" \
+            https://api.pushover.net/1/messages.json
+      - name: Notify on failure
         if: ${{ failure() }}
         run: |
-        curl -s \
-          --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
-          --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
-          --form-string "message=Siejmyquiz HOSTING deployment FAILED" \
-          https://api.pushover.net/1/messages.json
+          curl -s \
+            --fail \
+            --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
+            --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
+            --form-string "message=Siejmyquiz HOSTING deployment FAILED" \
+            https://api.pushover.net/1/messages.json
 
   clear_cf_cache:
     needs: hosting_build_and_deploy
@@ -59,4 +61,3 @@ jobs:
             --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
             --form-string "message=Siejmyquiz CF cache clearing FAILED" \
             https://api.pushover.net/1/messages.json
-
