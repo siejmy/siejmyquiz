@@ -12,9 +12,17 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.get("/:resultId", async (req, res) => {
-  return res.render("result_abcd", {
-    resultId: req.params.resultId,
-  });
+  const resultId = req.params.resultId;
+  if (!resultId) {
+    return res.status(404).render("404");
+  }
+  const result = await admin.firestore().document("results/").get();
+  const data = result && result.exists && result.data();
+  if (!data) {
+    return res.status(404).render("404");
+  }
+  //
+  return res.send(JSON.stringify(data));
 });
 
 exports.result_CbC8qrjxSk7UWmaHhslI = functions
