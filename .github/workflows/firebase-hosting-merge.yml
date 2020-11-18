@@ -23,6 +23,7 @@ jobs:
     steps:
       - run: |
           curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+            --fail \
             -H "X-Auth-Email: ${{ secrets.CLOUDFLARE_EMAIL }}" \
             -H "X-Auth-Key: ${{ secrets.CFAPITOKEN_FOR_WORKERS }}" \
             -H "Content-Type: application/json" \
