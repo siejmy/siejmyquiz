@@ -20,7 +20,7 @@ export function validateStatsEntry(
   ow(
     o.correctCount,
     'StatsEntry.correctCount',
-    ow.number.finite.integer.positive,
+    ow.number.finite.integer.greaterThanOrEqual(0),
   )
   ow(o.totalCount, 'StatsEntry.totalCount', ow.number.finite.integer.positive)
 }
@@ -33,7 +33,7 @@ export function validateStatsSummary(
   ow(
     o.histogram,
     'StatsSummary.histogram',
-    ow.array.ofType(ow.number.finite.integer.positive),
+    ow.array.ofType(ow.number.finite.integer.greaterThanOrEqual(0)),
   )
 }
 
