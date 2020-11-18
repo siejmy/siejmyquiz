@@ -14,7 +14,8 @@ app.set("view engine", "handlebars");
 app.get("/:resultId", async (req, res) => {
   const resultId = req.params.resultId;
   if (!resultId) {
-    return res.status(404).render("404");
+    res.status(404);
+    return res.render("404");
   }
   const result = await admin
     .firestore()
@@ -22,10 +23,15 @@ app.get("/:resultId", async (req, res) => {
     .get();
   const data = result && result.exists && result.data();
   if (!data) {
-    return res.status(404).render("404");
+    res.status(404);
+    return res.render("404");
   }
-  //
-  return res.send(JSON.stringify(data));
+  console.log(JSON.parse(data.dataJSON));
+  const templateName = data.templateName;
+  return res.render(templateName, {
+    id: data.id,
+    ...JSON.parse(data.dataJSON),
+  });
 });
 
 exports.result_CbC8qrjxSk7UWmaHhslI = functions
