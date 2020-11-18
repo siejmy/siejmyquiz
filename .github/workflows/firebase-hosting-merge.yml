@@ -34,17 +34,14 @@ jobs:
             --form-string "message=Siejmyquiz HOSTING deployment FAILED" \
             https://api.pushover.net/1/messages.json
 
-  clear_cf_cache:
+  clear_cf_cache_everything:
     needs: hosting_build_and_deploy
     runs-on: ubuntu-latest
     steps:
       - run: |
           curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
             --fail -v \
-            -H "X-Auth-Email: ${{ secrets.CLOUDFLARE_EMAIL }}" \
-            -H "X-Auth-Key: ${{ secrets.CFAPITOKEN_FOR_WORKERS }}" \
-            -H "Content-Type: application/json" \
-            --data '{ "hosts":["quiz.siejmy.pl"] }'
+            -H "Authorization: Bearer ${{ secrets.CFAPITOKEN_FOR_WORKERS }}"
       - run: |
           curl -s \
             --fail \
