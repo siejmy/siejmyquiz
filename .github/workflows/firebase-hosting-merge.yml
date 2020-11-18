@@ -17,6 +17,21 @@ jobs:
           projectId: siejmy
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
+      - run: |
+        curl -s \
+          --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
+          --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
+          --form-string "message=Siejmyquiz hosting deployment done" \
+          https://api.pushover.net/1/messages.json
+      - name: 'Notify on failure'
+        if: ${{ failure() }}
+        run: |
+        curl -s \
+          --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
+          --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
+          --form-string "message=Siejmyquiz HOSTING deployment FAILED" \
+          https://api.pushover.net/1/messages.json
+
   clear_cf_cache:
     needs: hosting_build_and_deploy
     runs-on: ubuntu-latest
@@ -28,3 +43,18 @@ jobs:
             -H "X-Auth-Key: ${{ secrets.CFAPITOKEN_FOR_WORKERS }}" \
             -H "Content-Type: application/json" \
             --data '{ "hosts":["quiz.siejmy.pl"] }'
+      - run: |
+        curl -s \
+          --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
+          --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
+          --form-string "message=Siejmyquiz Cloudflare cache cleared" \
+          https://api.pushover.net/1/messages.json
+      - name: 'Notify on failure'
+        if: ${{ failure() }}
+        run: |
+        curl -s \
+          --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
+          --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
+          --form-string "message=Siejmyquiz CF cache clearing FAILED" \
+          https://api.pushover.net/1/messages.json
+
