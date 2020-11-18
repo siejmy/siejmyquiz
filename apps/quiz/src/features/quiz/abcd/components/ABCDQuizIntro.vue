@@ -1,29 +1,26 @@
 <template>
-  <b-card
-    class="quiz-intro"
-    :img-src="imageUrl"
-    img-alt="Quiz"
-    img-top
-    tag="article"
+  <QuizCard
+    class="b-card-img-top"
     title="Zaczynamy quiz?"
+    @next="next()"
+    :imgSrc="imageUrl"
+    imgAlt="Wstęp do quizu"
   >
-    <b-card-text>
+    <template #text>
       <span v-html="introHtml"></span>
-    </b-card-text>
-
-    <b-button variant="primary" @click="next()">
-      Dalej
-    </b-button>
-  </b-card>
+    </template>
+  </QuizCard>
 </template>
-
 <script lang="ts">
+import { QuizCard } from '@/components'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import { ABCDQuizInterpreter } from '../machine'
 
 @Component({
-  components: {},
+  components: {
+    QuizCard,
+  },
 })
 export default class extends Vue {
   @Prop({ required: true })

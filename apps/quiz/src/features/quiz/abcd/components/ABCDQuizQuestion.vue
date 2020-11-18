@@ -1,34 +1,21 @@
 <template>
-  <b-card
-    no-body
-    :img-src="imageUrl"
-    :img-alt="title"
-    img-top
-    tag="article"
-    class="quiz-question-card mb-2 mr-2"
-    :border-variant="borderVariant"
+  <QuizCard
+    ref="card"
+    class="quiz-question-card"
+    :title="titleFull"
+    @next="next()"
+    :imgSrc="imageUrl"
+    imgAlt="Ilustracja do pytania quizu"
+    :nextButtonEnabled="isAnswered"
   >
-    <b-card-body>
-      <b-card-title>
-        #{{ questionNumber + 1 }}/{{ totalQuestions }}
-        {{ title }}
-      </b-card-title>
-    </b-card-body>
-
-    <b-card-body>
-      <b-card-text>
-        Wybierz prawidłową odpowiedź:
-      </b-card-text>
-    </b-card-body>
-
-    <b-form-group>
+    <b-form-group class="form-body">
       <b-list-group flush>
         <b-list-group-item
-          class="distractor-list-item"
+          :class="{ 'distractor-list-item': true, enabled: !isAnswered }"
           v-for="(distractor, index) of distractors"
           :key="distractor"
           :variant="getDistractorColorVariant(index)"
-          @click="selectiDistractor(index)"
+          @click="selectDistractor(index)"
         >
           <b-form-radio
             v-model="selectedAnswerNo"
@@ -42,39 +29,27 @@
       </b-list-group>
     </b-form-group>
 
-    <b-card-body>
-      <b-button
-        v-if="!isAnswered"
-        @click="submitAnswer()"
-        :disabled="isAnswerButtonDisabled"
-        variant="primary"
-      >
-        Odpowiedz
-      </b-button>
-
-      <b-button v-if="isAnswered" @click="next()" variant="primary">
-        Dalej
-      </b-button>
-    </b-card-body>
-    <b-card-body>
-      <b-alert v-if="isAnsweredCorrectly" variant="success" show>
-        Prawidłowa odpowiedź!
-      </b-alert>
-      <b-alert v-if="isAnsweredIncorrectly" variant="warning" show>
-        Prawidłowa odpowiedź to: {{ correctDistractorText }}
-      </b-alert>
-    </b-card-body>
-  </b-card>
+    <template #footer>
+      <b-progress height="2.375rem" :min="0" :max="totalQuestions">
+        <b-progress-bar :value="questionNumber">
+          <span>{{ proggressBarText }}</span>
+        </b-progress-bar>
+      </b-progress>
+    </template>
+  </QuizCard>
 </template>
 
 <script lang="ts">
+import { QuizCard } from '@/components'
 import { QuizABCDQuestion } from '@/domain'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import { ABCDQuizInterpreter } from '../machine'
 
 @Component({
-  components: {},
+  components: {
+    QuizCard,
+  },
 })
 export default class extends Vue {
   @Prop({ required: true })
@@ -117,6 +92,14 @@ export default class extends Vue {
     return this.question.title
   }
 
+  public get titleFull(): string {
+    return '#' + this.proggressBarText + ' ' + this.title
+  }
+
+  public get proggressBarText(): string {
+    return this.questionNumber + 1 + '/' + this.totalQuestions
+  }
+
   public get distractors(): string[] {
     return this.question.distractors
   }
@@ -144,13 +127,17 @@ export default class extends Vue {
     } else if (index === this.question.correctNo) {
       return 'success'
     } else if (index === this.selectedAnswerNo) {
-      return 'warning'
+      return 'danger'
     }
     return 'light'
   }
 
-  public selectiDistractor(index: number) {
+  public selectDistractor(index: number) {
+    if (this.isAnswered) {
+      return
+    }
     this.selectedAnswerNo = index
+    this.submitAnswer()
   }
 
   public submitAnswer() {
@@ -164,8 +151,25 @@ export default class extends Vue {
 }
 </script>
 <style scoped>
+.form-body {
+  padding-top: 0;
+  margin-top: -1rem;
+  margin-bottom: 0;
+}
+
 .distractor-list-item {
   cursor: pointer;
+  color: #333;
+}
+
+.distractor-list-item.enabled,
+.distractor-list-item.enabled * {
+  cursor: pointer;
+}
+
+.distractor-list-item.enabled:hover {
+  background: #ddd;
+  color: black;
 }
 
 .quiz-question-card {

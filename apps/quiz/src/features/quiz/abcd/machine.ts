@@ -68,7 +68,7 @@ export const abcdQuizMachine = Machine<Context, Schema, Events>(
     context: initialContext,
     states: {
       Intro: {
-        entry: ['assignQuizToResults', 'initializeStats'],
+        entry: ['initializeStats'],
         on: {
           NEXT: 'Question',
         },

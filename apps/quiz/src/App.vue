@@ -13,9 +13,22 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class App extends Vue {}
 </script>
 
-<style>
+<style lang="scss">
+$theme-colors: (
+  'primary': #3ace00,
+);
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap-vue/src/index.scss';
+
+html,
+body {
+  height: auto;
+  background: #999;
+}
+
 #app {
-  max-width: 700px;
+  max-width: 650px;
   margin: 0 auto;
+  padding-bottom: 20rem;
 }
 </style>

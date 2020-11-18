@@ -1,3 +1,5 @@
 export { default as Loading } from './Loading.vue'
 export { default as Error } from './Error.vue'
 export { default as StateMatches } from './StateMatches.vue'
+export { default as ImageAspect } from './ImageAspect.vue'
+export { default as QuizCard } from './QuizCard.vue'

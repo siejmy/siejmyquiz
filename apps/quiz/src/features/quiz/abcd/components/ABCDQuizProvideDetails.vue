@@ -48,7 +48,12 @@
       ></vue-recaptcha>
 
       <div v-if="isStateSeeDetails">
-        <b-button variant="primary" size="lg" @click="next()">
+        <b-button
+          class="mt-3 shadow-lg"
+          variant="primary"
+          size="lg"
+          @click="next()"
+        >
           Zobacz wyniki
         </b-button>
       </div>

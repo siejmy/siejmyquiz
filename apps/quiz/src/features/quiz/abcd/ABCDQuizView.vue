@@ -1,31 +1,36 @@
 <template>
   <b-row id="abcd-quiz-view">
-    <state-matches :state="state">
-      <template #Intro>
-        <ABCDQuizIntro :interpreter="interpreter" :state="state" />
-      </template>
-      <template #Question>
-        <ABCDQuizQuestion :interpreter="interpreter" :state="state" />
-      </template>
-      <template #ProvideDetails>
-        <ABCDQuizProvideDetails :interpreter="interpreter" :state="state" />
-      </template>
-      <template #SavingResults>
-        <Loading>Ładowanie wyników...</Loading>
-      </template>
-      <template #RedirectToSuccessPage>
-        <ABCDQuizRedirectToResults :interpreter="interpreter" :state="state" />
-      </template>
-      <template #Error.NoResults>
-        <Error>
-          Wystąpił nieznany błąd. Jeśli chcesz nam pomóc rozwijać Siejmy, to
-          powiadom nas o tym!
-        </Error>
-      </template>
-      <template #Error.HasResults>
-        <ABCDQuizTemporaryResults :interpreter="interpreter" :state="state" />
-      </template>
-    </state-matches>
+    <div class="col-12">
+      <state-matches :state="state">
+        <template #Intro>
+          <ABCDQuizIntro :interpreter="interpreter" :state="state" />
+        </template>
+        <template #Question>
+          <ABCDQuizQuestion :interpreter="interpreter" :state="state" />
+        </template>
+        <template #ProvideDetails>
+          <ABCDQuizProvideDetails :interpreter="interpreter" :state="state" />
+        </template>
+        <template #SavingResults>
+          <Loading>Ładowanie wyników...</Loading>
+        </template>
+        <template #RedirectToSuccessPage>
+          <ABCDQuizRedirectToResults
+            :interpreter="interpreter"
+            :state="state"
+          />
+        </template>
+        <template #Error.NoResults>
+          <Error>
+            Wystąpił nieznany błąd. Jeśli chcesz nam pomóc rozwijać Siejmy, to
+            powiadom nas o tym!
+          </Error>
+        </template>
+        <template #Error.HasResults>
+          <ABCDQuizTemporaryResults :interpreter="interpreter" :state="state" />
+        </template>
+      </state-matches>
+    </div>
   </b-row>
 </template>
 
