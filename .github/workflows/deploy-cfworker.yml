@@ -17,16 +17,18 @@ jobs:
           apiToken: ${{ secrets.CFAPITOKEN_FOR_WORKERS }}
           workingDirectory: "cfworker"
       - run: |
-        curl -s \
-          --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
-          --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
-          --form-string "message=Siejmyquiz deployed CFWORKER" \
-          https://api.pushover.net/1/messages.json
-      - name: 'Notify on failure'
+          curl -s \
+            --fail \
+            --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
+            --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
+            --form-string "message=Siejmyquiz deployed CFWORKER" \
+            https://api.pushover.net/1/messages.json
+      - name: Notify on failure
         if: ${{ failure() }}
         run: |
-        curl -s \
-          --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
-          --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
-          --form-string "message=Siejmyquiz CFWORKER deployment FAILED" \
-          https://api.pushover.net/1/messages.json
+          curl -s \
+            --fail \
+            --form-string "token=${{ secrets.PUSHOVER_APP_KEY }}" \
+            --form-string "user=${{ secrets.PUSHOVER_USER_KEY }}" \
+            --form-string "message=Siejmyquiz CFWORKER deployment FAILED" \
+            https://api.pushover.net/1/messages.json
