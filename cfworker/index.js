@@ -45,7 +45,7 @@ async function queryFunction(name, params) {
   const fetchResponse = await fetch(url);
   if (!fetchResponse.ok) {
     if (fetchResponse.status === 404) {
-      return make404();
+      return new Response(fetchResponse.body, { status: 404 });
     } else {
       throw new Error("Invalid response");
     }
@@ -54,5 +54,7 @@ async function queryFunction(name, params) {
 }
 
 function make404() {
-  return new Response("Not found", { status: 404 });
+  return new Response("Przepraszamy, nie znaleźliśmy tej strony", {
+    status: 404,
+  });
 }
