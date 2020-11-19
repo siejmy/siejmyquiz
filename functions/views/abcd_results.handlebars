@@ -1,2 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <meta property="og:url"                content="https://quiz.siejmy.pl/q/results/{{ alphanumeric id }}/" />
+  <meta property="og:locale"             content="pl_PL" />
+  <meta property="og:type"               content="article" />
+
+  {{#if name}}
+    <title>{{ dividePercentage statsEntry.correctCount statsEntry.totalCount }} {{ alphanumeric name }} {{ alphanumeric quiz.title }}</title>
+    <meta property="og:title"              content="{{ dividePercentage statsEntry.correctCount statsEntry.totalCount }} {{ alphanumeric name }} {{ alphanumeric quiz.title }}" />
+    <meta property="og:description"        content="{{ alphanumeric name }} uzyskał(a) {{ dividePercentage statsEntry.correctCount statsEntry.totalCount }} w quizie {{ alphanumeric quiz.title }}. A ile Ty uzyskasz?" />
+  {{else}}
+    <title>{{ alphanumeric name }} {{ alphanumeric quiz.title }}</title>
+    <meta property="og:title"              content="{{ alphanumeric name }} {{ alphanumeric quiz.title }}" />
+    <meta property="og:description"        content="{{ dividePercentage statsEntry.correctCount statsEntry.totalCount }} w quizie {{ alphanumeric quiz.title }}! A ile Ty uzyskasz?" />
+  {{/if}}
+
+  <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+  <meta property="fb:app_id"             content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+
+</head>
+<body>
+
 <h1>Wynik quizu #{{ id }}</h1>
 <p>Pierwsza odpowiedź: {{ stringified }}</p>
+
+</body>
+</html>

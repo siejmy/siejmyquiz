@@ -8,7 +8,13 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const app = express();
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main",
+    helpers: require("./handlebars-helpers"),
+  })
+);
 app.set("view engine", "handlebars");
 
 app.get("/:resultId", async (req, res) => {
