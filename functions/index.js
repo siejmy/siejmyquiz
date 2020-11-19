@@ -30,6 +30,7 @@ app.get("/:resultId", async (req, res) => {
   return res.render(templateName, {
     id: data.id,
     ...JSON.parse(data.dataJSON),
+    stringified: data.dataJSON,
   });
 });
 
