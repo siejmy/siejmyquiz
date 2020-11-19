@@ -23,6 +23,7 @@ export function interpretMachine({
             const result = makeDenormedResultQuizABCD(
               ctx.resultData,
               ctx.quiz,
+              ctx.stats!,
               statsEntries,
             )
             await resultsRepositoryFirestore.saveResult(result)

@@ -48,6 +48,7 @@ export interface Context {
 export const initialContext: Context = {
   quiz: {
     type: 'abcd',
+    title: '',
     id: '',
     introHtml: '',
     introImageUrl: '',

@@ -14,12 +14,14 @@ export function makeDenormedResultQuizABCD(
     answers: number[]
   },
   quiz: QuizABCD,
+  statsEntry: StatsEntry,
   statsEntries: StatsEntry[],
 ): Result {
   const resultDenormed: ResultABCDDenormed = {
     ...resultData,
     quiz,
     statsSummary: getStatsSummaryForEntries(statsEntries),
+    statsEntry,
   }
 
   validateResultABCDDenormed(resultDenormed)
