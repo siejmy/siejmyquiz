@@ -1,7 +1,7 @@
 /** Config */
 const fnMappings = {
   result:
-    "https://europe-west3-siejmy.cloudfunctions.net/result_CbC8qrjxSk7UWmaHhslI",
+    "https://europe-west3-siejmy.cloudfunctions.net/result_CbC8qrjxSk7UWmaHhslI?id=",
 };
 
 /** Worker */
@@ -41,7 +41,7 @@ async function queryFunction(name, params) {
   if (!fnMappings[name]) {
     return make404();
   }
-  const url = fnMappings[name] + "/" + params.join("/");
+  const url = fnMappings[name] + params.join("/");
   const fetchResponse = await fetch(url);
   if (!fetchResponse.ok) {
     if (fetchResponse.status === 404) {

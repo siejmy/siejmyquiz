@@ -1,0 +1,5 @@
+  {{#if name}}
+    {{ dividePercentage statsEntry.correctCount statsEntry.totalCount }} {{ alphanumeric name }} {{ alphanumeric quiz.title }}
+  {{else}}
+    {{ alphanumeric name }} {{ alphanumeric quiz.title }}
+  {{/if}}

@@ -1,0 +1,6 @@
+
+  {{#if name}}
+    {{ alphanumeric name }} uzyskał(a) {{ dividePercentage statsEntry.correctCount statsEntry.totalCount }} w quizie {{ alphanumeric quiz.title }}. A ile Ty uzyskasz?
+  {{else}}
+    {{ dividePercentage statsEntry.correctCount statsEntry.totalCount }} w quizie {{ alphanumeric quiz.title }}! A ile Ty uzyskasz?
+  {{/if}}
