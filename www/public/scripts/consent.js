@@ -31,12 +31,13 @@ function siejmyConsent() {
     fbq('track', 'PageView');
   `;
 
-  window.siejmyconsent_allowTracking = function() {
+  window.siejmyconsent_allowTracking = function () {
+    document.getElementById("siejmyconsent").style.display = "none";
     document.cookie = "cookieconsent_status=allow";
     siejmyconsent_enableTracking();
-  }
+  };
 
-  window.siejmyconsent_enableTracking = function() {
+  window.siejmyconsent_enableTracking = function () {
     trackingScripts.forEach((url) => {
       const script = document.createElement("script");
       script.async = true;
@@ -47,7 +48,7 @@ function siejmyConsent() {
     const script = document.createElement("script");
     script.innerText = trackingCode;
     document.body.appendChild(script);
-  }
+  };
 
   window.addEventListener("DOMContentLoaded", function () {
     const isAllowed =
@@ -55,16 +56,19 @@ function siejmyConsent() {
     const isDenied = document.cookie.indexOf("cookieconsent_status=deny") > -1;
 
     if (isAllowed) {
-      enableTracking();
+      siejmyconsent_enableTracking();
     } else if (!isDenied) {
       const consentElem = document.createElement("div");
       consentElem.id = "siejmyconsent";
-      consentElem.innerHTML = '<p>' + consentHtml + '</p>'
-          + '<a onClick="siejmyconsent_allowTracking()">' + allowBtnText + '</a>'
+      consentElem.innerHTML =
+        "<p>" +
+        consentHtml +
+        "</p>" +
+        '<a onClick="siejmyconsent_allowTracking()">' +
+        allowBtnText +
+        "</a>";
       document.body.appendChild(consentElem);
     }
-
-    function enableTracking()
   });
 }
 siejmyConsent();

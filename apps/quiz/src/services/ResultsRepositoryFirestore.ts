@@ -4,11 +4,18 @@ const collection = 'results'
 export class ResultsRepositoryFirestore {
   public async saveResult(r: Result) {
     validateResult(r)
-    return window.firebase
+    console.log('SAVE RESULT TO \'results/' + r.id + '\'', r)
+    await window.firebase
       .firestore()
       .collection(collection)
       .doc(r.id)
       .set(r)
+    const doc = await window.firebase
+      .firestore()
+      .collection(collection)
+      .doc(r.id)
+      .get()
+    console.log('Results SAVE DONE, GOT ', doc.data())
   }
 
   public async getResultById(id: string): Promise<Result> {

@@ -22,7 +22,7 @@ export default class extends Vue {
   }
 
   public mounted() {
-    window.location.href = '/q/results/' + this.resultsId
+    // window.location.href = '/q/results/' + this.resultsId
   }
 }
 </script>
