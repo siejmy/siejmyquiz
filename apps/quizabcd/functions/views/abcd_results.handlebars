@@ -8,8 +8,8 @@
   <meta property="og:type"               content="article" />
 
     <title>{{> title}}</title>
-    <meta property="og:title"              content="{{> title}}" />
-    <meta property="og:description"        content="{{> description}}" />
+    <meta property="og:title"              content="{{quiz.title}}" />
+    <meta property="og:description"        content="{{quiz.description}}" />
 
   {{!-- <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" /> --}}
   {{!-- <meta property="fb:app_id"             content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" /> --}}
@@ -17,8 +17,8 @@
 </head>
 <body>
 
-<h1>{{> title}}</h1>
-<p>{{> description}}</p>
+<h1>{{ quiz.title }}</h1>
+<p>{{quiz.description}}</p>
 <p>Json: {{ stringified }}</p>
 
 </body>
