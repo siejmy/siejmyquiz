@@ -18,8 +18,10 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.get("/", async (req, res) => {
-  console.log("REQ", req.query);
+app.get("/:resultId", async (req, res) => {
+  console.log("REQ query", req.query);
+  console.log("REQ params", req.params);
+  console.log("REQ path", req.path);
   const resultId = req.query.id;
   if (!resultId) {
     res.status(404);
@@ -44,12 +46,12 @@ app.get("/", async (req, res) => {
   });
 });
 
-const result_CbC8qrjxSk7UWmaHhslI = functions
-  .region("europe-west3")
+const result = functions
+  .region("us-central1")
   .runWith({
     timeoutSeconds: 2,
     memory: "1GB",
   })
   .https.onRequest(app);
 
-exports.quizabcd = { result_CbC8qrjxSk7UWmaHhslI };
+exports.quizabcd = { result };
