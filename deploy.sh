@@ -5,5 +5,7 @@ set -e
 
 source project.config.sh
 
-firebase deploy --only hosting,firestore
+"${DIR_PROJECT}/build.sh"
+
 "${DIR_APPS}/deploy.sh"
+firebase deploy --only hosting,firestore
