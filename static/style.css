@@ -104,12 +104,13 @@ body {
   background: var(--main-color);
   padding: 16px;
   color: white;
+  box-shadow: 2px 2px 20px 5px rgba(0, 0, 0, 0.4);
 
-  -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 2s; /* Firefox < 16 */
-  -ms-animation: fadein 2s; /* Internet Explorer */
-  -o-animation: fadein 2s; /* Opera < 12.1 */
-  animation: fadein 2s;
+  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 1s; /* Firefox < 16 */
+  -ms-animation: fadein 1s; /* Internet Explorer */
+  -o-animation: fadein 1s; /* Opera < 12.1 */
+  animation: fadein 1s;
 }
 
 #siejmyconsent a {
@@ -125,8 +126,13 @@ body {
   padding: 10px;
   margin: 10px;
   font-weight: bold;
-  color: white;
+  color: black;
+  text-decoration: none;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+#siejmyconsent .btn:hover {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4) inset;
 }
 
 @keyframes fadein {
