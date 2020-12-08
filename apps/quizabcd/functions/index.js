@@ -18,11 +18,11 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-app.get("/:resultId", async (req, res) => {
+app.get("/:alias/:resultId", async (req, res) => {
   console.log("REQ query", req.query);
   console.log("REQ params", req.params);
   console.log("REQ path", req.path);
-  const resultId = req.query.id;
+  const resultId = req.params.resultId;
   if (!resultId) {
     res.status(404);
     return res.render("404");
