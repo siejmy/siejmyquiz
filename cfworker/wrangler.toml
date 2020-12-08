@@ -1,6 +1,0 @@
-name = "cfworker-siejmyquiz"
-type = "javascript"
-account_id = "ef93ac57c05414c42e47796f6d647cee"
-workers_dev = false
-route = "https://quiz.siejmy.pl/q/*"
-zone_id = "ec90df59d4b5f96f6ae3f4053b4a38fa"

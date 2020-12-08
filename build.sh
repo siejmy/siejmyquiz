@@ -2,14 +2,12 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${DIR}"
 set -e
+set +x
 
-echo "# Installing siejmyquiz"
+source project.config.sh
 
-echo "# Building www"
-./www/build.sh
+rm -rf "${DIR_DIST_HOSTING}" || echo "No need to rm ${DIR_DIST_HOSTING}"
+mkdir -p "${DIR_DIST_HOSTING}"
+cp -R "${DIR_STATIC}" "${DIR_DIST_HOSTING}"
 
-
-echo "# Building apps/quiz"
-./apps/quiz/build.sh
-mkdir www/dist/apps
-cp -R apps/quiz/dist www/dist/apps/quiz
+"${DIR_APPS}/build.sh"

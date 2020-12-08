@@ -2,18 +2,6 @@
   "folders": [
     {
       "path": ".."
-    },
-    {
-      "path": "../www"
-    },
-    {
-      "path": "../apps/quiz"
-    },
-    {
-      "path": "../cfworker"
-    },
-    {
-      "path": "../functions"
     }
   ],
   "settings": {
