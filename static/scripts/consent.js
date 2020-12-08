@@ -64,7 +64,7 @@ function siejmyConsent() {
         "<p>" +
         consentHtml +
         "</p>" +
-        '<a onClick="siejmyconsent_allowTracking()">' +
+        '<a class="btn" onClick="siejmyconsent_allowTracking()">' +
         allowBtnText +
         "</a>";
       document.body.appendChild(consentElem);
