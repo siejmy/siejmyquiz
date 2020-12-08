@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noUnusedLocals": false,
+    "baseUrl": "src",
+    "outDir": "dist"
+  },
+  "include": ["**/*.ts"]
+}
