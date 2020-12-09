@@ -7,9 +7,9 @@ admin.initializeApp();
 const { constructApp } = require("./app.js");
 
 const app = constructApp({
-  getResultFn: (resultId) => {
+  getResultFn: async (resultId) => {
     const docPath = "results/" + resultId;
-    const result = await admin.firestore().doc(docPath).get()
+    const result = await admin.firestore().doc(docPath).get();
     console.log(result);
     return result && result.exists && result.data();
   },

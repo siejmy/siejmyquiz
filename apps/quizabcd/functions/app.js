@@ -3,6 +3,8 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 
+const quizBaseUrl = "https://quiz.siejmy.pl/";
+
 function constructApp(opts) {
   const getResultFn = opts.getResultFn;
 
@@ -29,14 +31,20 @@ function constructApp(opts) {
     }
 
     const data = await getResultFn(resultId);
-    if (!data) {
+    const dataParsed = JSON.parse(data.dataJSON);
+    const quizUrl = quizBaseUrl + dataParsed.dataJSON.quizUrl;
+    const quizResponse = await fetch(quizUrl);
+    const quiz = await quizResponse.json();
+
+    if (!data || !quiz) {
       res.status(404);
       return res.render("404");
     }
     console.log(JSON.parse(data.dataJSON));
     return res.render("abcd_results", {
       id: data.id || "noid",
-      ...JSON.parse(data.dataJSON),
+      ...dataParsed,
+      ...quiz,
       stringified: data.dataJSON,
     });
   });
