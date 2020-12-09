@@ -8,7 +8,9 @@ CLOUDRUN_TAG="gcr.io/${GCP_PROJECT_ID}/${CONTAINER_NAME}"
 
 gcloud builds submit --tag "${CLOUDRUN_TAG}"
 
-gcloud beta run deploy --allow-unauthenticated \
+gcloud beta run deploy abcd \
+                       --allow-unauthenticated \
                        --region "${GCP_REGION_CLOUDRUN}" \
-                       --image "${CLOUDRUN_TAG}"
+                       --image "${CLOUDRUN_TAG}" \
+                       --platform managed
 
