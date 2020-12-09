@@ -12,23 +12,12 @@
     ],
     "rewrites": [
       {
-        "source": "/quizabcd-result/*",
-        "function": "quizabcd-result"
+        "source": "/abcd/**",
+        "run": {
+          "serviceId": "abcd",
+          "region": "europe-west1"
+        }
       }
     ]
-  },
-  "emulators": {
-    "firestore": {
-      "port": 8080
-    },
-    "hosting": {
-      "port": 5000
-    },
-    "ui": {
-      "enabled": true
-    },
-    "functions": {
-      "port": 5001
-    }
   }
 }

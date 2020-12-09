@@ -8,6 +8,5 @@ source project.config.sh
 "${DIR_PROJECT}/build.sh"
 
 "${DIR_APPS}/deploy.sh"
-"${DIR_PROJECT}/abcd/deploy.sh"
 
 firebase deploy --only hosting,firestore

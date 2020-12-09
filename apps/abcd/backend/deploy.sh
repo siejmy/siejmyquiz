@@ -3,8 +3,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${DIR}"
 set -e
 
-source "../project.config.sh"
-
 CONTAINER_NAME="abcd"
 CLOUDRUN_TAG="gcr.io/${GCP_PROJECT_ID}/${CONTAINER_NAME}"
 

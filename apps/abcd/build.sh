@@ -3,4 +3,5 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${DIR}"
 set -e
 
-npm i
+./app/build.sh
+./backend/build.sh
