@@ -4,16 +4,5 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write: if false;
     }
-
-    match /results/{doc} {
-      allow get: if true;
-      allow create: if true;
-    }
-
-    match /stats_entries/{quizId}/entries/{doc} {
-      allow list: if true;
-      allow get: if true;
-      allow create: if true;
-    }
   }
 }

@@ -2,24 +2,28 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-        log.Print("helloworld: received a request")
-        target := os.Getenv("TARGET")
-        if target == "" {
-                target = "World"
-        }
-        fmt.Fprintf(w, "Hello %s!\n", target)
+func serveTemplate(w http.ResponseWriter, r *http.Request) {
+        lp := filepath.Join("templates", "layout.html")
+        fp := filepath.Join("templates", "home.html")
+
+        tmpl, _ := template.ParseFiles(lp, fp)
+        tmpl.ExecuteTemplate(w, "layout", nil)
 }
 
 func main() {
         log.Print("helloworld: starting server...")
 
-        http.HandleFunc("/", handler)
+        fs := http.FileServer(http.Dir("./static"))
+        http.Handle("/static/", http.StripPrefix("/static/", fs))
+
+        http.HandleFunc("/", serveTemplate)
 
         port := os.Getenv("PORT")
         if port == "" {
