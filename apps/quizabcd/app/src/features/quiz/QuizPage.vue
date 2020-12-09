@@ -32,8 +32,8 @@ import { ABCDQuizView } from './abcd'
   },
 })
 export default class QuizPage extends Vue {
-  error: boolean = false
-  quiz: Quiz | '' = ''
+  public error: boolean = false
+  public quiz: Quiz | '' = ''
 
   get config(): Configuration {
     return this.$root.$data.config
