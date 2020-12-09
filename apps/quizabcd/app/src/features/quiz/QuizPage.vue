@@ -4,7 +4,13 @@
       <h1>{{ title }}</h1>
     </b-row>
 
-    <ABCDQuizView v-if="type === 'abcd'" :quiz="quiz" />
+    <div v-if="!error">
+      Błąd: nie można załadować quizu...
+    </div>
+    <div v-else-if="!quiz">
+      Ładowanie quizu...
+    </div>
+    <ABCDQuizView v-else-if="quiz.type === 'abcd'" :quiz="quiz" />
     <div v-else>
       Nie znaleźliśmy odpowiedniego typu quizu. Jeśli chcesz pomóc Siejmy, to
       kontaktuj się z nami i opowiedz nam o błędzie 😇
@@ -26,6 +32,9 @@ import { ABCDQuizView } from './abcd'
   },
 })
 export default class QuizPage extends Vue {
+  error: boolean = false
+  quiz: Quiz | '' = ''
+
   get config(): Configuration {
     return this.$root.$data.config
   }
@@ -34,12 +43,17 @@ export default class QuizPage extends Vue {
     return this.config.title
   }
 
-  get quiz(): Quiz {
-    return this.config.quiz
+  mounted() {
+    this.loadQuiz().catch(err => {
+      console.error(err)
+      this.error = true
+    })
   }
 
-  get type(): string {
-    return this.quiz.type
+  async loadQuiz() {
+    const url = '/' + this.config.quizUrl
+    const response = await fetch(url)
+    this.quiz = await response.json()
   }
 }
 </script>

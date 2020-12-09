@@ -6,7 +6,7 @@ export interface Configuration {
   title: string
   reCaptchaKey: string
   facebookAppId: string
-  quiz: QuizABCD
+  quizUrl: string
 }
 
 export function validateConfiguration(c: Configuration) {
@@ -14,6 +14,5 @@ export function validateConfiguration(c: Configuration) {
   ow(c.title, 'Configuration.title', ow.string.nonEmpty)
   ow(c.reCaptchaKey, 'Configuration.reCaptchaKey', ow.string.nonEmpty)
   ow(c.facebookAppId, 'Configuration.facebookAppId', ow.string.nonEmpty)
-  ow(c.quiz, 'Configuration.quiz', ow.object)
-  validateQuizABCD(c.quiz)
+  ow(c.quizUrl, 'Configuration.quizUrl', ow.string)
 }

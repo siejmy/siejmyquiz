@@ -1,0 +1,33 @@
+{
+  "id": "sanktuaria-demo",
+  "title": "Sanktuaria w Polsce",
+  "type": "abcd",
+  "introHtml": "Czy potrafisz rozpoznać, który wizarunek Matki Przenajświętszej pochodzi z jakiego sanktuarium?",
+  "introImageUrl": "sanktuaria-4.jpg",
+  "questions": [
+    {
+      "title": "Co to za sanktuarium?",
+      "imageUrl": "sanktuaria-1.jpg",
+      "distractors": ["Częstochowa", "Ostrożany", "Obory", "Gietrzwałd"],
+      "correctNo": 0
+    },
+    {
+      "title": "Co to za sanktuarium?",
+      "imageUrl": "sanktuaria-2.jpg",
+      "distractors": ["Częstochowa", "Ostrożany", "Obory", "Gietrzwałd"],
+      "correctNo": 3
+    },
+    {
+      "title": "Co to za sanktuarium?",
+      "imageUrl": "sanktuaria-3.jpg",
+      "distractors": ["Częstochowa", "Ostrożany", "Obory", "Gietrzwałd"],
+      "correctNo": 2
+    },
+    {
+      "title": "Co to za sanktuarium?",
+      "imageUrl": "sanktuaria-4.jpg",
+      "distractors": ["Częstochowa", "Ostrożany", "Obory", "Gietrzwałd"],
+      "correctNo": 1
+    }
+  ]
+}
