@@ -43,14 +43,14 @@ export default class QuizPage extends Vue {
     return this.config.title
   }
 
-  mounted() {
+  public mounted() {
     this.loadQuiz().catch(err => {
       console.error(err)
       this.error = true
     })
   }
 
-  async loadQuiz() {
+  public async loadQuiz() {
     const url = '/' + this.config.quizUrl
     const response = await fetch(url)
     this.quiz = await response.json()
