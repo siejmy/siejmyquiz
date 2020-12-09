@@ -8,8 +8,10 @@ import { interpret } from 'xstate'
 import { ABCDQuizInterpreter, abcdQuizMachine, initialContext } from './machine'
 
 export function interpretMachine({
+  quizUrl,
   quiz,
 }: {
+  quizUrl: string
   quiz: QuizABCD
 }): ABCDQuizInterpreter {
   return interpret(
@@ -22,7 +24,7 @@ export function interpretMachine({
               .getAllEntriesForQuiz(ctx.quiz.id)
             const result = makeDenormedResultQuizABCD(
               ctx.resultData,
-              ctx.quiz,
+              quizUrl,
               ctx.stats!,
               statsEntries,
             )

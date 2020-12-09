@@ -1,6 +1,5 @@
 import {
   getStatsSummaryForEntries,
-  QuizABCD,
   Result,
   ResultABCDDenormed,
   StatsEntry,
@@ -13,13 +12,13 @@ export function makeDenormedResultQuizABCD(
     name: string
     answers: number[]
   },
-  quiz: QuizABCD,
+  quizUrl: string,
   statsEntry: StatsEntry,
   statsEntries: StatsEntry[],
 ): Result {
   const resultDenormed: ResultABCDDenormed = {
     ...resultData,
-    quiz,
+    quizUrl,
     statsSummary: getStatsSummaryForEntries(statsEntries),
     statsEntry,
   }

@@ -62,10 +62,14 @@ import { ABCDQuizInterpreter } from './machine'
   },
 })
 export default class extends Vue {
+  @Prop({ required: true, type: String })
+  public quizUrl!: string
+
   @Prop({ required: true, type: Object })
   public quiz!: QuizABCD
 
   public interpreter: ABCDQuizInterpreter = interpretMachine({
+    quizUrl: this.quizUrl,
     quiz: this.quiz,
   })
   public state: ABCDQuizInterpreter['state'] = this.interpreter.initialState
