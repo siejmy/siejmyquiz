@@ -30,22 +30,30 @@ function constructApp(opts) {
       return res.render("404");
     }
 
-    const data = await getResultFn(resultId);
-    const dataParsed = JSON.parse(data.dataJSON);
-    const quizUrl = quizBaseUrl + dataParsed.dataJSON.quizUrl;
+    const resultResponse = await getResultFn(resultId);
+    console.log(JSON.stringify({ resultResponse }));
+    const result = JSON.parse(resultResponse.dataJSON);
+    console.log(JSON.stringify({ result }));
+    const quizUrl = quizBaseUrl + result.quizUrl;
+    console.log(JSON.stringify({ quizUrl }));
     const quizResponse = await fetch(quizUrl);
+    console.log(JSON.stringify({ quizResponse }));
     const quiz = await quizResponse.json();
+    console.log(JSON.stringify({ quiz }));
 
     if (!data || !quiz) {
       res.status(404);
       return res.render("404");
     }
-    console.log(JSON.parse(data.dataJSON));
-    return res.render("abcd_results", {
+    const opts = {
       id: data.id || "noid",
-      ...dataParsed,
-      ...quiz,
-      stringified: data.dataJSON,
+      result,
+      quiz,
+    };
+    console.log(JSON.stringify(opts));
+    return res.render("abcd_results", {
+      ...opts,
+      stringified: JSON.stringify(opts),
     });
   });
 

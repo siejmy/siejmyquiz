@@ -10,7 +10,6 @@ const app = constructApp({
   getResultFn: async (resultId) => {
     const docPath = "results/" + resultId;
     const result = await admin.firestore().doc(docPath).get();
-    console.log(result);
     return result && result.exists && result.data();
   },
 });
