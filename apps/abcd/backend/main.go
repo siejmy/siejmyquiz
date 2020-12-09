@@ -9,6 +9,10 @@ import (
 	"path/filepath"
 )
 
+var routeBase = "abcd"
+var homeRoute = fmt.Sprintf("/%s/", routeBase)
+var staticRoute = fmt.Sprintf("/%s/%s/", routeBase, "static")
+
 func serveTemplate(w http.ResponseWriter, r *http.Request) {
         lp := filepath.Join("templates", "layout.html")
         fp := filepath.Join("templates", "home.html")
@@ -25,9 +29,9 @@ func main() {
         log.Print("abcd: starting server...")
 
         fs := http.FileServer(http.Dir("./static"))
-        http.Handle("/static/", http.StripPrefix("/static/", fs))
+        http.Handle(staticRoute, http.StripPrefix(staticRoute, fs))
 
-        http.HandleFunc("/", serveTemplate)
+        http.HandleFunc(homeRoute, serveTemplate)
 
         port := os.Getenv("PORT")
         if port == "" {
