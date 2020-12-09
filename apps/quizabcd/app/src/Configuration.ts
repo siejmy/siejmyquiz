@@ -1,7 +1,5 @@
 import ow from 'ow'
 
-import { QuizABCD, validateQuizABCD } from './domain'
-
 export interface Configuration {
   title: string
   reCaptchaKey: string
